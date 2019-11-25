@@ -54,6 +54,8 @@ function hitPaddle(paddleX, paddleY, paddleWidth, paddleHeight, ballX, ballY, ba
   if((ballX > paddleX - (paddleWidth/2)) && (ballX < paddleX + (paddleWidth/2))) {
     // debugger;
     if((ballY > paddleY - paddleHeight) && (ballY < paddleY + paddleHeight)) {
+      // if hit left side of the paddle, reflect towards the left
+      // if hit right side of the paddle, reflect towards the left
       pong.xdir *= -1;
       pong.ydir *= -1;
     }
