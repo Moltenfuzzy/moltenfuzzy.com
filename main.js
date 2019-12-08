@@ -213,16 +213,20 @@ function DisplayWin() {
 }
 
 function PlayerMove() {
-	if (keyIsDown(UP_ARROW)) {
+	const W = 87;
+	const A = 65;
+	const S = 83;
+	const D = 68; 
+	if (keyIsDown(UP_ARROW) || keyIsDown(W)) {
 		player.y -= 4;
 	}
-	if (keyIsDown(DOWN_ARROW)) {
+	if (keyIsDown(DOWN_ARROW) || keyIsDown(S)) {
 		player.y += 4;
 	}
-	if (keyIsDown(LEFT_ARROW)) {
+	if (keyIsDown(LEFT_ARROW) || keyIsDown(A)) {
 		player.x -= 4;
 	}
-	if (keyIsDown(RIGHT_ARROW)) {
+	if (keyIsDown(RIGHT_ARROW) || keyIsDown(D)) {
 		player.x += 4;
 	}
 }
