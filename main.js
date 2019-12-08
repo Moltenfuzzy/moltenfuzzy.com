@@ -71,13 +71,13 @@ class Apple {
 		if ((player.x < x_pos_width) && (player.x > wall_x) && (player.y < y_pos_height) && (player.y > wall_y))
 		{
 			this.visited = true; 
-			apple_count++; 
 			print("IN APPLE");
 		}
 	}
 
 	display() {
-		image(this.img, this.x, this.y);
+		if(!this.visited)
+			image(this.img, this.x, this.y);
 	}
 };
 
@@ -88,6 +88,7 @@ class Tree {
 		this.y = y;
 		this.width = 100; 
 		this.height = 100; 
+		this.visited = false; 
 	}
 	
 	intersect(player) { 	
@@ -98,8 +99,12 @@ class Tree {
 		let y_pos_height = this.y + this.height; 
 		if ((player.x < x_pos_width) && (player.x > wall_x) && (player.y < y_pos_height) && (player.y > wall_y))
 		{
-			player.x = 404;
-			player.y = 788;
+			push();
+			DisplayWin();
+			 // displaying win message and delaying 3 seconds until game reset after winning
+			setTimeout(function() {Reset()}, 3000);
+			window.location.replace("https://teamtrees.org/") // redirecting to team trees :)
+			pop();
 			print("IN TREE");
 		}
 	}
@@ -115,7 +120,7 @@ let apples = [];
 let apple_tree; 
 let player; 
 let forest; 
-let apple_count; 
+let apple_count = 0; 
 
 function preload()
 {
@@ -128,12 +133,7 @@ function setup()
 {
 	createCanvas(800, 800); 
 
-	apple_tree = new Tree(tree_img, 365, -30); 
-
-	apples.push(new Apple(apple_img, 450, 660));
-	apples.push(new Apple(apple_img, 0, 450));
-	apples.push(new Apple(apple_img, 670, -10));
-	apples.push(new Apple(apple_img, 220, 100));
+	Reset();
 
 	walls.push(new Wall(width-20, 0, 20, height));
 	walls.push(new Wall(0, 0, 360, 20)); 
@@ -168,13 +168,20 @@ function setup()
 	player = new Player(404, 788); 	
 }
 
+function Reset() {
+	apple_tree = new Tree(tree_img, 365, -30);
+	apples.push(new Apple(apple_img, 450, 660));
+	apples.push(new Apple(apple_img, 0, 450));
+	apples.push(new Apple(apple_img, 670, -10));
+	apples.push(new Apple(apple_img, 220, 100));
+	player = new Player(404, 788); 	
+}
+
 function draw() {
 	background(forest);
 
 	PlayerMove();
-
-	apple_tree.intersect(player); 
-	apple_tree.display(); 
+	print(apple_count); 
 
 	for(let i = 0; i < walls.length; i++)
 	{
@@ -188,21 +195,35 @@ function draw() {
 		apples[i].display(); 
 	}
 
+	apple_tree.intersect(player); 
+	apple_tree.display(); 
+
 	player.display(player.x, player.y); 
+}
+
+function DisplayWin() {
+	textSize(80);
+	textFont('Yeon Sung');
+	textAlign(CENTER);
+	textStyle(BOLD);
+	stroke(0);
+	strokeWeight(10);
+	fill(255);
+	text('You Win!', width / 2, height / 2);
 }
 
 function PlayerMove() {
 	if (keyIsDown(UP_ARROW)) {
-		player.y -= 3;
+		player.y -= 4;
 	}
 	if (keyIsDown(DOWN_ARROW)) {
-		player.y += 3;
+		player.y += 4;
 	}
 	if (keyIsDown(LEFT_ARROW)) {
-		player.x -= 3;
+		player.x -= 4;
 	}
 	if (keyIsDown(RIGHT_ARROW)) {
-		player.x += 3;
+		player.x += 4;
 	}
 }
 
