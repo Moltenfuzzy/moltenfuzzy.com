@@ -124,9 +124,9 @@ let apple_count = 0;
 
 function preload()
 {
-	apple_img = loadImage("apple.png");
-	tree_img = loadImage("fall_tree.png"); 
-	forest = loadImage("forest.jpg");
+	apple_img = loadImage("images/apple.png");
+	tree_img = loadImage("images/fall_tree.png"); 
+	forest = loadImage("images/forest.jpg");
 }
 
 function setup() 
