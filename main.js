@@ -1,11 +1,14 @@
-  /*
-  Assignment: Final Project
-  Student: Kent Phan
-  Pasadena City College, Fall 2019
-  Prof. Masood Kamandy
-  Project Description: Tree Themed Maze with goals
-  Last Modified: Month Day, Year
-  */
+/*
+Assignment: Final Project
+Student: Kent Phan
+Pasadena City College, Fall 2019
+Prof. Masood Kamandy
+Project Description: Tree Themed Maze 
+Last Modified: December 8th, 2019
+
+To play the game without running the code locally
+https://www.moltenfuzzy.com/  
+*/
 
 class Wall 
 {
@@ -22,6 +25,8 @@ class Wall
 	
 		let x_pos_width = this.x + this.width;
 		let y_pos_height = this.y + this.height; 
+
+		// checks if player is within the area
 		if ((player.x < x_pos_width) && (player.x > wall_x) && (player.y < y_pos_height) && (player.y > wall_y))
 		{
 			player.x = 404;
@@ -67,7 +72,9 @@ class Apple {
 		let wall_y = this.y;
 	
 		let x_pos_width = this.x + this.width;
-		let y_pos_height = this.y + this.height; 
+		let y_pos_height = this.y + this.height;
+
+		// checks if player is within the area
 		if ((player.x < x_pos_width) && (player.x > wall_x) && (player.y < y_pos_height) && (player.y > wall_y))
 		{
 			this.visited = true; 
@@ -76,7 +83,7 @@ class Apple {
 	}
 
 	display() {
-		if(!this.visited)
+		if(!this.visited) // if not visited display the image(apple)
 			image(this.img, this.x, this.y);
 	}
 };
@@ -97,13 +104,14 @@ class Tree {
 	
 		let x_pos_width = this.x + this.width;
 		let y_pos_height = this.y + this.height; 
+
 		if ((player.x < x_pos_width) && (player.x > wall_x) && (player.y < y_pos_height) && (player.y > wall_y))
 		{
 			push();
 			DisplayWin();
 			 // displaying win message and delaying 3 seconds until game reset after winning
 			setTimeout(function() {Reset()}, 3000);
-			window.location.replace("https://teamtrees.org/") // redirecting to team trees :)
+			// window.location.replace("https://teamtrees.org/") // redirecting to team trees :)
 			pop();
 			print("IN TREE");
 		}
@@ -114,8 +122,8 @@ class Tree {
 	}
 };
 
-let walls = []; 
-let apples = []; 
+let walls = []; // storing all the walls in an array
+let apples = [];  // storying all the apples in an array
 
 let apple_tree; 
 let player; 
@@ -133,8 +141,10 @@ function setup()
 {
 	createCanvas(800, 800); 
 
-	Reset();
+	// creates a new player, apples, and winning tree objects
+	Reset(); 
 
+	// Creating walls
 	walls.push(new Wall(width-20, 0, 20, height));
 	walls.push(new Wall(0, 0, 360, 20)); 
 	walls.push(new Wall(0, 0, 20, height)); 
@@ -164,11 +174,10 @@ function setup()
 	walls.push(new Wall(670, 558, 200, 20)); 
 	walls.push(new Wall(350, 558, 100, 20)); 
 	walls.push(new Wall(350, 670, 340, 20)); 
-
-	player = new Player(404, 788); 	
 }
 
 function Reset() {
+	// creating player, apples, and apple trees
 	apple_tree = new Tree(tree_img, 365, -30);
 	apples.push(new Apple(apple_img, 450, 660));
 	apples.push(new Apple(apple_img, 0, 450));
@@ -180,25 +189,26 @@ function Reset() {
 function draw() {
 	background(forest);
 
-	PlayerMove();
-	print(apple_count); 
+	PlayerMove(); // WSAD or Arrow Keys
+	print(apple_count); // for testing
 
 	for(let i = 0; i < walls.length; i++)
 	{
-		walls[i].intersect(player); 
-		walls[i].display();
+		walls[i].intersect(player); // checking if any wall has been touched by the player and executes that code
+		walls[i].display(); // displays the walls(rects)
 	}
 
 	for(let i = 0; i < apples.length; i++)
 	{
-		apples[i].intersect(player);
-		apples[i].display(); 
+		apples[i].intersect(player); // checking if any apple has been touched by the player and executes that code
+		apples[i].display(); // displays the apples(images of apples)
 	}
 
-	apple_tree.intersect(player); 
+	// only one apple tree object which is collected by the user to win the game
+	apple_tree.intersect(player); // when touched displays win message and resets the game using Reset(); 
 	apple_tree.display(); 
 
-	player.display(player.x, player.y); 
+	player.display(player.x, player.y); // draws the player at position x and y 
 }
 
 function DisplayWin() {
@@ -212,6 +222,7 @@ function DisplayWin() {
 	text('You Win!', width / 2, height / 2);
 }
 
+// allows for player movement WASD or ARROW KEYS
 function PlayerMove() {
 	const W = 87;
 	const A = 65;

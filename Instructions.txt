@@ -1,0 +1,4 @@
+Copy the file and make sure the images directory is correct and it should run fine.
+Or go to https://www.moltenfuzzy.com/ , which is hosted by github pages. 
+If you would like to look at the code as well without downloading my github repository for this is 
+https://github.com/Moltenfuzzy/moltenfuzzy.com
