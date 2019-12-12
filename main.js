@@ -201,6 +201,7 @@ function Reset() {
 	// resetting back to default
 	player.x = 404;
 	player.y = 788;
+	apple_count = 0; 
 	for(let i = 0; i < apples.length; i++) {
 		apples[i].visited = false; 
 	}
