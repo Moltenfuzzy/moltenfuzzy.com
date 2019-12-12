@@ -4,7 +4,7 @@ Student: Kent Phan
 Pasadena City College, Fall 2019
 Prof. Masood Kamandy
 Project Description: Tree Themed Maze 
-Last Modified: December 8th, 2019
+Last Modified: December 11th, 2019
 
 To play the game without running the code locally
 https://www.moltenfuzzy.com/  
@@ -58,13 +58,14 @@ class Player {
 };
 
 class Apple {
-	constructor(img, x, y) {
+	constructor(img, x, y, fact) {
 		this.img = img;
 		this.x = x;
 		this.y = y;
 		this.width = 100; 
 		this.height = 100; 
 		this.visited = false; 
+		this.fact = fact;
 	}
 
 	intersect(player) { 	
@@ -77,9 +78,20 @@ class Apple {
 		// checks if player is within the area
 		if ((player.x < x_pos_width) && (player.x > wall_x) && (player.y < y_pos_height) && (player.y > wall_y))
 		{
+			// counting it only once per visit
+			if(this.visited == false) {
+				apple_count++; 
+			}
 			this.visited = true; 
+			push();
+			SetFont(); 
+			textSize(30);
+			text(this.fact, width/2 - 150, height/2 - 100, 300, 400);
+			pop();
 			print("IN APPLE");
+			return true; 
 		}
+		return false; 
 	}
 
 	display() {
@@ -108,10 +120,14 @@ class Tree {
 		if ((player.x < x_pos_width) && (player.x > wall_x) && (player.y < y_pos_height) && (player.y > wall_y))
 		{
 			push();
-			DisplayWin();
-			 // displaying win message and delaying 3 seconds until game reset after winning
-			setTimeout(function() {Reset()}, 3000);
-			// window.location.replace("https://teamtrees.org/") // redirecting to team trees :)
+			if(apple_count == apples.length) {
+				SetFont(); 
+				textSize(60);
+				text('You Win, now go plant a tree!', width / 2, height / 2);
+				 // displaying win message and delaying 3 seconds until game reset after winning
+				setTimeout(function() {Reset();}, 3000);
+				// window.location.replace("https://teamtrees.org/") // redirecting to team trees :)
+			}
 			pop();
 			print("IN TREE");
 		}
@@ -142,7 +158,12 @@ function setup()
 	createCanvas(800, 800); 
 
 	// creates a new player, apples, and winning tree objects
-	Reset(); 
+	apple_tree = new Tree(tree_img, 365, -30);
+	apples.push(new Apple(apple_img, 450, 660, 'Trees absorb carbon dioxide, removing and storing the carbon while releasing the oxygen back into the air.'));
+	apples.push(new Apple(apple_img, 0, 450, 'More than 20% of the world’s oxygen is produced in the Amazon Rainforest'));
+	apples.push(new Apple(apple_img, 670, -10, 'Trees remove pollution from the atmosphere, improving air quality and human health.'));
+	apples.push(new Apple(apple_img, 220, 100, 'Forested watersheds provide quality drinking water to more than 180 million Americans.'));
+	player = new Player(404, 788); 	 
 
 	// Creating walls
 	walls.push(new Wall(width-20, 0, 20, height));
@@ -177,13 +198,12 @@ function setup()
 }
 
 function Reset() {
-	// creating player, apples, and apple trees
-	apple_tree = new Tree(tree_img, 365, -30);
-	apples.push(new Apple(apple_img, 450, 660));
-	apples.push(new Apple(apple_img, 0, 450));
-	apples.push(new Apple(apple_img, 670, -10));
-	apples.push(new Apple(apple_img, 220, 100));
-	player = new Player(404, 788); 	
+	// resetting back to default
+	player.x = 404;
+	player.y = 788;
+	for(let i = 0; i < apples.length; i++) {
+		apples[i].visited = false; 
+	}
 }
 
 function draw() {
@@ -211,15 +231,13 @@ function draw() {
 	player.display(player.x, player.y); // draws the player at position x and y 
 }
 
-function DisplayWin() {
-	textSize(80);
+function SetFont() {
 	textFont('Yeon Sung');
 	textAlign(CENTER);
 	textStyle(BOLD);
 	stroke(0);
 	strokeWeight(10);
 	fill(255);
-	text('You Win!', width / 2, height / 2);
 }
 
 // allows for player movement WASD or ARROW KEYS
@@ -229,16 +247,16 @@ function PlayerMove() {
 	const S = 83;
 	const D = 68; 
 	if (keyIsDown(UP_ARROW) || keyIsDown(W)) {
-		player.y -= 4;
+		player.y -= 5;
 	}
 	if (keyIsDown(DOWN_ARROW) || keyIsDown(S)) {
-		player.y += 4;
+		player.y += 5;
 	}
 	if (keyIsDown(LEFT_ARROW) || keyIsDown(A)) {
-		player.x -= 4;
+		player.x -= 5;
 	}
 	if (keyIsDown(RIGHT_ARROW) || keyIsDown(D)) {
-		player.x += 4;
+		player.x += 5;
 	}
 }
 
