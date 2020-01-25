@@ -17,6 +17,7 @@
 .button {
     background-color: #4CAF50; /* Green */
     border: none;
+    border-radius: 15px;
     color: black;
     padding: 20px 32px;
     text-align: center;
@@ -25,11 +26,31 @@
     font-size: 20px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     border: 3px solid black;
-    -webkit-transition-duration: 0.4s; 
+    opacity: 1;
     transition-duration: 0.2s;
+    cursor: pointer;
   }
 
-  .button:hover {
-    background-color: #357a38; /* Green */
-  }
+.button:hover {
+    opacity: 0.7;
+}
+
+.vertical { 
+    display:block; /* change this from inline-block */
+    width:200px; /* setting the width */
+    margin:0 auto; /* this will center  it */
+}
+
+.github {
+    background-color: #e65ae6;
+}
+
+.email {
+    background-color: #ed544c;
+}
+
+.linkedin {
+    background-color: #6b71f2;
+}
+
 
