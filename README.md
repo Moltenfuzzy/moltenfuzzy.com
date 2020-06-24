@@ -1,14 +1,6 @@
-## Welcome to moltenfuzzy.com
-
-You can use the [editor on GitHub](https://github.com/Moltenfuzzy/Moltenfuzzy.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
+<!-- 
+For Reference
+```Markdown
 Syntax highlighted code block
 
 # Header 1
@@ -25,4 +17,12 @@ Syntax highlighted code block
 **Bold** and _Italic_ and `Code` text
 
 [Link](url) and ![Image](src)
-```
+``` 
+-->
+
+# Welcome to [moltenfuzzy.com](moltenfuzzy.com)
+
+Hey there, this website is going be used as a portfolio to display all my projects!
+
+
+

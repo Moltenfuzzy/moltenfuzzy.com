@@ -1,56 +1,89 @@
-
-
-.title {
-    text-align: center;
-    font-size: larger;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+* {
+	margin: 0;
+	padding: 0;	
+	font-family: sans-serif;
+	background:#212930;
 }
 
-.projects { 
-    text-align: center;
+.container {
+	text-align: center;
+	width: 100%; 
+	height: 100%;
 }
 
-.centerbutton {
-    text-align: center;
+.menu ul {
+	display: inline-flex;
+	margin: 50px; 
+	/* margin-right: 40px; */
 }
 
-.button {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    border-radius: 15px;
-    color: black;
-    padding: 20px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 20px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    border: 3px solid black;
-    opacity: 1;
-    transition-duration: 0.2s;
-    cursor: pointer;
+.menu ul li {
+	font-size: 17px;
+	list-style: none;
+	margin: 0 20px; 
+	cursor: pointer;
+	color: whitesmoke;
+}
+
+.page-links a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.banner {
+	width: 80%;
+	height: 70%;
+	top: 25%;
+	left: 130px;
+	position: absolute;
+	color: whitesmoke;
+}
+
+.home-text {
+	width: 50%;
+	float: left;
+}
+
+.home-text h1 {
+	font-size: 43px;
+	width: 640px;
+	position: relative;
+	margin-left: 40px;
+
+	overflow: hidden; /* Ensures the content is not revealed until the animation */
+	border-right: .15em solid black; /* The typwriter cursor */
+	white-space: nowrap; /* Keeps the content on a single line */
+	/* margin: 1 auto; Gives that scrolling effect as the typing happens */
+	letter-spacing: 0em; /* Adjust as needed */
+
+	/* Animation */
+	animation: animated-text 4s steps(29,end) 1s 1 normal both,
+	animated-cursor 600ms steps(29,end) infinite;
+}
+
+/* The typing effect */
+@keyframes animated-text{
+	from{width: 0;}
+	to{width: 560px;}
+}
+  
+  /* The typewriter cursor effect */
+@keyframes animated-cursor{
+	from{border-right-color: black;}
+	to{border-right-color: transparent;}
+}
+
+.home-text p {
+	width: 650px;
+	font-size: 15px;
+	margin: 30px 0px 30px 40px;
+	line-height: 25px;
+}
+
+.footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
   }
-
-.button:hover {
-    opacity: 0.7;
-}
-
-.vertical { 
-    display:block; /* change this from inline-block */
-    width:200px; /* setting the width */
-    margin:0 auto; /* this will center  it */
-}
-
-.github {
-    background-color: #e65ae6;
-}
-
-.email {
-    background-color: #ed544c;
-}
-
-.linkedin {
-    background-color: #6b71f2;
-}
-
-
