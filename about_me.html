@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>moltenfuzzy.com</title>
+  <link rel="stylesheet" href="styles/about_me_style.css">
+</head>
+<body> 
+  <div class="container">
+    <div class="menu">
+      <ul class="page-links" style="margin-top: 100px;">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about_me.html">About Me</a></li>
+        <li><a href="projects.html">Projects</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="scene scene--card" style="margin: 0 auto;">
+    <div class="card">
+      <div class="card__face card__face--front"></div>
+      <div class="card__face card__face--back">
+        <h3>Kent Phan</h3>
+        <p>Computer Science Student</p>
+        <p>Enjoys playing video games</p>
+        <p>Attending The University of California, Riverside</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    var card = document.querySelector('.card');
+    card.addEventListener( 'click', function() {
+      card.classList.toggle('is-flipped');
+    });
+  </script>
+  <div class="footer page-links">
+    <a href="mailto:kentphan2000@gmail.com">
+      <img src="images/email.png" width="60" height="60" alt="email">
+    </a>
+    <a href="https://www.linkedin.com/in/kent-phan-973a96177/">
+      <img src="images/linkedin_icon.png" width="60" height="60" alt="linkedin">
+    </a>
+    <a href="https://github.com/Moltenfuzzy">
+      <img src="images/github.png" width="60" height="60" alt="github">
+    </a>
+  </div>
+</body>
+</html>
